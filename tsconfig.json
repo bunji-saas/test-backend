@@ -1,0 +1,16 @@
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false, // https://stackoverflow.com/questions/49699067/
+    "isolatedModules": true
+  },
+  "include": ["src", "test"]
+}
