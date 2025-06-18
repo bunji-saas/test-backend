@@ -1,0 +1,144 @@
+{
+  "info": {
+    "_postman_id": "b199ef96-a829-4654-a4bc-c7eb4b073a7b",
+    "name": "Technical test : Pet Shop API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38221019",
+    "_collection_link": "https://dark-sunset-6694.postman.co/workspace/Bunji~6d2adc62-84f1-4d18-80eb-42d43ce1e5ef/collection/38221019-b199ef96-a829-4654-a4bc-c7eb4b073a7b?action=share&source=collection_link&creator=38221019"
+  },
+  "item": [
+    {
+      "name": "Pets",
+      "item": [
+        {
+          "name": "Create Pet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Buddy\",\n  \"description\": \"Loyal Golden Retriever\",\n  \"birthDate\": \"2020-01-15T00:00:00.000Z\",\n  \"type\": \"dog\",\n  \"deathDate\": null\n}"
+            },
+            "url": {
+              "raw": "{{petShopUrl}}/pets",
+              "host": ["{{petShopUrl}}"],
+              "path": ["pets"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find All Pets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{petShopUrl}}/pets?page=2",
+              "host": ["{{petShopUrl}}"],
+              "path": ["pets"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find One Pet",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{petShopUrl}}/pets/1",
+              "host": ["{{petShopUrl}}"],
+              "path": ["pets", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Pet",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Buddy II\",\n  \"description\": \"Still a loyal Golden Retriever, but older\",\n  \"birthDate\": \"2020-01-15T00:00:00.000Z\",\n  \"type\": \"dog\"\n}"
+            },
+            "url": {
+              "raw": "{{petShopUrl}}/pets/1",
+              "host": ["{{petShopUrl}}"],
+              "path": ["pets", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Pet",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{petShopUrl}}/pets/1",
+              "host": ["{{petShopUrl}}"],
+              "path": ["pets", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get /",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", () => {",
+              "  pm.response.to.have.status(200);",
+              "",
+              "});",
+              "",
+              "  pm.test(\"Check message\", () => {",
+              "    let jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql('Welcome to the NestJS application!');",
+              "  });"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{petShopUrl}}",
+          "host": ["{{petShopUrl}}"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "petShopUrl",
+      "value": "http://localhost:4567",
+      "type": "string"
+    }
+  ]
+}
